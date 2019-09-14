@@ -1,10 +1,24 @@
 export interface EnemyBulletParameterObject extends g.CommonOffset {
+    /**
+     * 弾の方向ベクトル
+     */
     vecX: number;
     vecY: number;
+
+    /**
+     * 弾にかかる速度係数
+     */
     speed?: number;
+
+    /**
+     * 弾の属性
+     */
     side: boolean;
 }
 
+/**
+ * 敵弾のクラス
+ */
 export class EnemyBullet extends g.FilledRect {
     vecX: number;
     vecY: number;

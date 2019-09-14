@@ -2,6 +2,10 @@ import { Player } from "./Player";
 import { EnemyBullet } from "./EnemyBullet";
 import { Enemy } from "./Enemy";
 
+/**
+ * 状態管理クラス
+ * mock段階ではゲームの状態はほぼ無いため、実質的に描画エンティティの生成と管理を行う
+ */
 export class StateManager {
     player: Player;
     // playerBullets: PlayerBullet[];
@@ -22,6 +26,9 @@ export class StateManager {
         scene.append(this.root);
     }
 
+    /**
+     * 毎フレーム実行する処理
+     */
     update() {
         this.checkEnemyBulletCollision();
     }
@@ -46,13 +53,13 @@ export class StateManager {
         this.root.append(enemy);
     }
 
-    createEnemyBullet(enemy: Enemy, vecX: number, vecY: number, side: boolean) {
+    createEnemyBullet(enemy: Enemy, vecX: number, vecY: number) {
         const bullet = new EnemyBullet({
             x: enemy.x,
             y: enemy.y,
             vecX,
             vecY,
-            side
+            side: enemy._currentSide
         });
         this.enemyBullets.push(bullet);
         this.root.append(bullet);
